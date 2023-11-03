@@ -7,7 +7,6 @@ import { logIn } from '../state/auth/authSlice'
 
 
 export default function Register() {
-    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
@@ -15,9 +14,9 @@ export default function Register() {
     let dispatch = useDispatch()
 
     const handleSubmit= () => {
-        const data = {username: username, email: email, password: password}
+        const data = {identifier: email, password: password}
 
-        fetch('http://localhost:1337/api/auth/local/register', {
+        fetch('http://localhost:1337/api/auth/local', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +46,6 @@ export default function Register() {
     
     return(
         <div>
-            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button onClick={()=> handleSubmit()}>Submit</button>
